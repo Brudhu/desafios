@@ -55,7 +55,7 @@ e, com isso, a função 'format_text' pode ser usada.
 
 Definição da função:
 ```
-def format_text(text, max_len, justify=False):
+def format_text(text: str, max_len: int, justify: bool=False):
     """ Return formatted text with max_len length and optionally justified.
 
     Keyword arguments:
@@ -119,3 +119,49 @@ Ran 4 tests in 0.000s
 OK
 ```
 
+## Casos Atípicos (Parâmetros):
+
+### String vazia:
+
+Caso a string seja vazia, o programa retorna uma string vazia: ```''```
+
+### Parâmetro max_len muito pequeno, igual a zero ou negativo:
+
+Para casos onde max_len é menor do que o tamanho da palavra (ou igual ou menor do que zero), o programa retorna uma palavra por linha:
+```
+In [8]: print(txtfmt.format_text(text, 0, True))
+
+In
+the
+beginning
+God
+created
+the
+[...]
+morning
+-
+the
+first
+day.
+
+```
+
+### Parâmetros com tipo inválido (quando usar a solução como um módulo):
+
+Caso um dos três parâmetros receba valores com tipo errado, a função vai disparar um erro do tipo "TypeError": 
+```
+In [9]: print(txtfmt.format_text(text, '0', True))                                                                    
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-9-f0a53cb4580d> in <module>
+----> 1 print(txtfmt.format_text(text, '0', True))
+
+~/projetos/sandbox/idwall_desafios/desafios/strings/solucao/textformatting.py in format_text(text, max_len, justify)
+    119         raise TypeError('The first parameter (text) should be a string')
+    120     if type(max_len) != int:
+--> 121         raise TypeError('The second parameter (max_len) should be an integer')
+    122     if type(justify) != bool:
+    123         raise TypeError('The third parameter (justify) should be a boolean')
+
+TypeError: The second parameter (max_len) should be an integer
+```

@@ -3,7 +3,7 @@ import sys
 import getopt
 
 
-def _get_formatted_line_list(line, max_len):
+def _get_formatted_line_list(line: str, max_len: int):
     """ Split text "line" in a list of lists of words that concatenated are
         not lengthier than max_len.
 
@@ -40,7 +40,7 @@ def _get_formatted_line_list(line, max_len):
     return formatted_lines_list
 
 
-def _justify_text(words_list, max_len):
+def _justify_text(words_list: list, max_len: int):
     """ Justify text by adding spaces in between words
 
     Keyword arguments:
@@ -72,11 +72,11 @@ def _justify_text(words_list, max_len):
     return text
 
 
-def _rebuild_text(formatted_text_list, max_len, justify=False):
+def _rebuild_text(format_text_list: list, max_len: int, justify: bool=False):
     """ Rebuild the formatted text from a list of lists of strings.
 
     Keyword arguments:
-    formatted_text_list -- the text (list of list of strings) to be rebuilt
+    format_text_list -- the text (list of list of strings) to be rebuilt
                            Eg.: [['Hi,', 'my', 'name'],['is', 'Bruno']]
     max_len -- the max length (int) of each line of the output formatted text
     justify -- boolean to tell the function to justify the text with extra
@@ -90,7 +90,7 @@ def _rebuild_text(formatted_text_list, max_len, justify=False):
     output_text = ''
 
     # for each line, rebuild it and concatenate with output_text
-    for formatted_line in formatted_text_list:
+    for formatted_line in format_text_list:
         # justify text if required
         if justify:
             new_line = _justify_text(formatted_line, max_len)
@@ -102,7 +102,7 @@ def _rebuild_text(formatted_text_list, max_len, justify=False):
     return output_text
 
 
-def format_text(text, max_len, justify=False):
+def format_text(text: str, max_len: int, justify: bool=False):
     """ Return formatted text with max_len length and optionally justified.
 
     Keyword arguments:
@@ -121,6 +121,9 @@ def format_text(text, max_len, justify=False):
         raise TypeError('The second parameter (max_len) should be an integer')
     if type(justify) != bool:
         raise TypeError('The third parameter (justify) should be a boolean')
+
+    if len(text) == 0:
+        return ''
 
     # split text in a list of lines (paragraphs)
     lines = text.split('\n')
@@ -188,4 +191,3 @@ def main(argv):
 
 if __name__ == '__main__':
     main(sys.argv[1:])
-
