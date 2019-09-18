@@ -1,3 +1,12 @@
+# Instruções para as soluções
+
+Para instruções referentes às implementações das minhas soluções, leia os arquivos README.md localizados nas pastas strings e crawlers.
+
+1. [Strings](https://github.com/Brudhu/desafios/tree/master/strings)
+2. [Crawlers](https://github.com/Brudhu/desafios/tree/master/crawlers)
+
+---
+
 # Desafios IDwall
 
 Aqui estão os desafios para a primeira fase de testes de candidatos da IDwall.
@@ -30,3 +39,4 @@ A implementação deve ficar na pasta correspondente ao desafio. Fique à vontad
 Caso queira mais detalhes de como trabalhamos, quais são nossos valores e ideais, confira a página [Carreira IDwall](https://idwall.co/carreira) e mesmo que seu perfil não esteja listado nas vagas em aberto, lhe encorajamos a mandar seu CV! Valorizamos bons profissionais sempre e gostamos de manter contato com gente boa.
 
 Boas implementações! 🎉
+
