@@ -19,7 +19,7 @@ fi
 
 sudo -u $real_user wget https://github.com/mozilla/geckodriver/releases/download/v0.25.0/geckodriver-v0.25.0-linux64.tar.gz
 
-sudo -u $real_user tar -xvzf geckodriver*
+sudo -u $real_user tar -xvzf geckodriver-v0.25.0-linux64.tar.gz
 
 sudo -u $real_user chmod +x geckodriver
 
