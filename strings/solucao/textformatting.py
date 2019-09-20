@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-import sys
-import getopt
+from argparse import ArgumentParser
 
 
 def _get_formatted_line_list(line: str, max_len: int):
@@ -72,7 +71,9 @@ def _justify_text(words_list: list, max_len: int):
     return text
 
 
-def _rebuild_text(format_text_list: list, max_len: int, justify: bool=False):
+def _rebuild_text(format_text_list: list,
+                  max_len: int,
+                  justify: bool = False):
     """ Rebuild the formatted text from a list of lists of strings.
 
     Keyword arguments:
@@ -141,53 +142,79 @@ def format_text(text: str, max_len: int, justify: bool=False):
     return output_text
 
 
-def print_usage():
+def _print_usage():
     print('./textformatting.py [-j] -m <max-len> -i <inputfile> '
           '[-o <outputfile>]')
 
 
-def main(argv):
-    inputfile = ''
-    outputfile = ''
-    max_len = -1
-    justify = False
-    try:
-        opts, args = getopt.getopt(argv,
-                                   "hjm:i:o:",
-                                   ["max-len=", "ifile=", "ofile="])
-    except getopt.GetoptError:
-        print_usage()
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt == '-h':
-            print_usage()
-            sys.exit()
-        if opt == '-j':
-            justify = True
-        elif opt in ("-i", "--ifile"):
-            inputfile = arg
-        elif opt in ("-o", "--ofile"):
-            outputfile = arg
-        elif opt in ("-m", "--max-len"):
-            max_len = int(arg)
+def main():
+    # define arguments for parser
+    parser = ArgumentParser(
+        description='Format and justify (optional) text with max_len length')
 
-    if max_len < 0:
-        print_usage()
-        sys.exit()
+    inputfile_help = 'Path to file that contains text to be formatted'
+    parser.add_argument('input_file', type=str, help=inputfile_help)
 
-    if len(inputfile):
-        with open(inputfile, 'r') as content_file:
-            content = content_file.read()
-            formatted_text = format_text(content, max_len, justify)
-            if len(outputfile):
-                out_file = open(outputfile, 'wb')
-                out_file.write(formatted_text.encode('utf-8'))
-            else:
-                print(formatted_text)
+    outputfile_help = 'Path to file that will contain the formatted text'
+    parser.add_argument('-o', '--output-file', type=str, help=inputfile_help)
 
-    else:
-        print_usage()
+    max_len_help = 'Maximum length of the formatted output text'
+    parser.add_argument('-m', '--max-len', type=int,
+                        default=40, help=max_len_help)
+
+    justify_help = 'Flag to justify text to have max_len length'
+    parser.add_argument('-j', dest='justify', 
+                        action='store_true', help=justify_help)
+    
+    # get arguments
+    args = vars(parser.parse_args())
+    input_file = args['input_file']
+    output_file = args['output_file']
+    max_len = args['max_len']
+    justify = args['justify']
+    
+    print(input_file, output_file, max_len, justify)
+    #inputfile = ''
+    #outputfile = ''
+    #max_len = -1
+    #justify = False
+    #try:
+        #opts, args = getopt.getopt(argv,
+                                   #"hjm:i:o:",
+                                   #["max-len=", "ifile=", "ofile="])
+    #except getopt.GetoptError:
+        #_print_usage()
+        #sys.exit(2)
+    #for opt, arg in opts:
+        #if opt == '-h':
+            #_print_usage()
+            #sys.exit()
+        #if opt == '-j':
+            #justify = True
+        #elif opt in ("-i", "--ifile"):
+            #inputfile = arg
+        #elif opt in ("-o", "--ofile"):
+            #outputfile = arg
+        #elif opt in ("-m", "--max-len"):
+            #max_len = int(arg)
+
+    #if max_len < 0:
+        #_print_usage()
+        #sys.exit()
+
+    #if len(inputfile):
+        #with open(inputfile, 'r') as content_file:
+            #content = content_file.read()
+            #formatted_text = format_text(content, max_len, justify)
+            #if len(outputfile):
+                #out_file = open(outputfile, 'wb')
+                #out_file.write(formatted_text.encode('utf-8'))
+            #else:
+                #print(formatted_text)
+
+    #else:
+        #_print_usage()
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main()
