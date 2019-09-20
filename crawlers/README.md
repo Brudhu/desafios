@@ -111,3 +111,12 @@ Seguem dois prints da sua utilização:
 
 ![Informações do Bot](https://github.com/Brudhu/desafios/blob/master/crawlers/solucao/imagens/bot-example.jpg?raw=true)
 
+## Casos Atípicos (Parâmetros):
+
+### String subreddits vazia:
+
+Caso a lista de subreddits seja uma string vazia, o programa vai emitir o erro ```ValueError: subreddits não pode ser uma string vazia``` e encerrar a execução.
+
+### Parâmetro NUMBER_OF_VOTES igual a zero ou negativo:
+
+Para casos onde NUMBER_OF_VOTES é menor ou igual a zero, o programa considerará todas as threads como "bombantes", retornando todas elas.

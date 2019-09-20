@@ -4,6 +4,7 @@ from selenium.webdriver.firefox.options import Options
 from reddithelpers import Thread, thread_regex
 from argparse import ArgumentParser
 import re
+import sys
 
 
 def get_hot_threads(subreddits: list, hot_up_votes: int = 5000):
@@ -59,8 +60,13 @@ def main():
 
     # get arguments
     args = parser.parse_args()
-    subreddits = args.subreddits.split(';')
     hot_up_votes = args.number_of_votes
+
+    # edge cases
+    if len(args.subreddits) == 0:
+        raise ValueError('subreddits não pode ser uma string vazia')
+
+    subreddits = args.subreddits.split(';')
 
     # get hot threads
     hot_threads = get_hot_threads(subreddits, hot_up_votes)
