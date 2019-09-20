@@ -173,48 +173,17 @@ def main():
     max_len = args['max_len']
     justify = args['justify']
 
-    print(input_file, output_file, max_len, justify)
-    #inputfile = ''
-    #outputfile = ''
-    #max_len = -1
-    #justify = False
-    #try:
-        #opts, args = getopt.getopt(argv,
-                                   #"hjm:i:o:",
-                                   #["max-len=", "ifile=", "ofile="])
-    #except getopt.GetoptError:
-        #_print_usage()
-        #sys.exit(2)
-    #for opt, arg in opts:
-        #if opt == '-h':
-            #_print_usage()
-            #sys.exit()
-        #if opt == '-j':
-            #justify = True
-        #elif opt in ("-i", "--ifile"):
-            #inputfile = arg
-        #elif opt in ("-o", "--ofile"):
-            #outputfile = arg
-        #elif opt in ("-m", "--max-len"):
-            #max_len = int(arg)
-
-    #if max_len < 0:
-        #_print_usage()
-        #sys.exit()
-
-    #if len(inputfile):
-        #with open(inputfile, 'r') as content_file:
-            #content = content_file.read()
-            #formatted_text = format_text(content, max_len, justify)
-            #if len(outputfile):
-                #out_file = open(outputfile, 'wb')
-                #out_file.write(formatted_text.encode('utf-8'))
-            #else:
-                #print(formatted_text)
-
-    #else:
-        #_print_usage()
+    # read file and print output (to console or to output_file)
+    with open(input_file, 'r') as content_file:
+        content = content_file.read()
+        formatted_text = format_text(content, max_len, justify)
+        if output_file is not None:
+            out_file = open(output_file, 'wb')
+            out_file.write(formatted_text.encode('utf-8'))
+        else:
+            print(formatted_text)
 
 
 if __name__ == '__main__':
     main()
+

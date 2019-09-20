@@ -17,15 +17,32 @@ Entre no subdiretório onde o arquivo textformatting.py está localizado:
 $ cd strings/solucao/
 ```
 
-Execute o script, passando os seguintes argumentos:
+Execute o script passando os argumentos descritos no _help_ do script:
+```
+$ ./textformatting.py -h
+usage: textformatting.py [-h] [-o OUTPUT_FILE] [-m MAX_LEN] [-j] input_file
+
+Format and justify (optional) text with max_len length
+
+positional arguments:
+  input_file            Path to file that contains text to be formatted
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -o OUTPUT_FILE, --output-file OUTPUT_FILE
+                        Path to file that contains text to be formatted
+  -m MAX_LEN, --max-len MAX_LEN
+                        Maximum length of the formatted output text
+```
+
 * -j : Opcional - irá justificar o texto com espaços em branco.
-* -m \<max-len\>: Obrigatório - número máximo de caracteres em cada linha.
-* -i \<inputfile\>: Obrigatório - arquivo com o texto que será formatado.
-* -o \<outputfile\>: Opcional - arquivo onde o text formatado será salvo. Caso esse argumento não seja passado, o script irá imprimir o text formatado na tela.
+* -m MAX_LEN: Opcional (default: 40) - número máximo de caracteres em cada linha.
+* input_file: Obrigatório - arquivo com o texto que será formatado.
+* -o OUTPUT_FILE: Opcional - arquivo onde o text formatado será salvo. Caso esse argumento não seja passado, o script irá imprimir o text formatado na tela.
 
 Exemplo:
 ```
-$ ./textformatting.py -j -m 40 -i example_text.txt
+$ ./textformatting.py -j -m 40 example_text.txt
 In the beginning God created the heavens
 and   the   earth.  Now  the  earth  was
 formless  and  empty,  darkness was over
@@ -44,7 +61,7 @@ there  was  morning  -  the  first  day.
 
 Para executar o script diretamente como um executável no terminal, o host deve ter o programa python3 dentro de /usr/bin: ```/usr/bin/python3```. 
 
-Caso contrário, o usuário pode fazer a chamada utilizando o executável do interpretador de Python3: ```python3 textformatting.py -j -m 30 -i example_text.txt``` ou ```/absolute/path/to/python3 textformatting.py -j -m 30 -i example_text.txt```
+Caso contrário, o usuário pode fazer a chamada utilizando o executável do interpretador de Python3: ```python3 textformatting.py -j -m 30 example_text.txt``` ou ```/absolute/path/to/python3 textformatting.py -j -m 30 example_text.txt```
 
 ### Como um módulo:
 O arquivo textformatting.py pode ser importado no seu próprio arquivo com a seguinte sintaxe:
