@@ -163,16 +163,16 @@ def main():
                         default=40, help=max_len_help)
 
     justify_help = 'Flag to justify text to have max_len length'
-    parser.add_argument('-j', dest='justify', 
+    parser.add_argument('-j', dest='justify',
                         action='store_true', help=justify_help)
-    
+
     # get arguments
     args = vars(parser.parse_args())
     input_file = args['input_file']
     output_file = args['output_file']
     max_len = args['max_len']
     justify = args['justify']
-    
+
     print(input_file, output_file, max_len, justify)
     #inputfile = ''
     #outputfile = ''
