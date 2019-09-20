@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
 import telegram

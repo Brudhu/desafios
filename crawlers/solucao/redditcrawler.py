@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from reddithelpers import Thread, thread_regex
